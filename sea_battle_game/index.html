@@ -1,0 +1,111 @@
+<!DOCTYPE html> <!-- -->
+<html>
+<head>
+	<!--Кодировка HTML-страницы-->
+	<meta charset="utf-8">
+	<!--Заголовок-->
+	<title>Морской бой</title>
+	<!-- Подключаем стиль -->
+	<link rel="stylesheet" type="text/css" href="css/style.css">
+
+	<!-- Подключаем библиотеку jQuery, IE8 поддерживает только jQuery v1.X.X, http://jquery.com/browser-support/, https://habrahabr.ru/post/146758/-->
+	<script src="js/jquery-1.11.3.min.js"></script>
+	<!-- Подключаем скрипт игры -->
+	<script src="js/sea_battle_game.js"></script>
+</head>
+
+<!--КЛАСС ТЕЛА. Атрибут class - задает стилевой класс, который позволяет связать определенный тег со стилевым оформлением-->
+<body class="show-main-menu" style="background-image: url('img/back.jpg')">
+	<!--ИГРОВОЕ МЕНЮ. Атрибут id - задает стилевой идентификатор — уникальное имя элемента, которое используется для изменения его стиля и обращения к нему через скрипты. Идентификатор в коде документа должен быть в единственном экземпляре, иными словами, встречаться только один раз-->
+	<div id="game-window">
+		<!-- ГЛАВНОЕ МЕНЮ -->
+		<div id="main-menu">
+			<form id="start-game-form" class="menu-wrap">
+				<!-- ЛОГОТИП -->
+				<div  id="logotype">
+					<!-- Конструкция для отображения логотипа в браузерах,
+						которые не поддерживают SVG, http://htmlbook.ru/blog/gibkie-svg-elementy, http://css.yoksel.ru/svg-fallback-in-ie9-and-androids2x/ -->
+					<h1 class="text-center">Морской бой</h1>
+					<svg width="251" height="254">
+						<image xlink:href="img/logotype.svg" src="img/logotype.png" width="251" height="254"/>
+					</svg>
+				</div>
+
+				<!-- ПОЛЕ ДЛЯ ВВОДА ИМЕНИ ИГРОКА -->
+				Введите своё имя:
+				<input type="text" id="player-name-input">
+
+				<!-- ПОДСКАЗКА ДЛЯ ВВОДА КОРРЕКТНОГО ИМЕНИ ИГРОКА -->
+				<div class="input-info" id="player-name-input-info">
+				Имя игрока может содержать только буквы, цифры, точки и пробелы.
+				</div>
+
+				<!-- КНОПКА НАЧАЛА ИГРЫ -->
+				<input type="button" value="Начать игру" class="start-game-btn primary">
+
+				<!-- ССЫЛКА НА ПРАВИЛА ИГРЫ -->
+				<a href="https://ru.wikipedia.org/wiki/Морской_бой_(игра)" target="_blank">Правила игры</a>
+			</form>
+		</div>
+		
+		<div id="game-wrap">
+			<div class="loading"></div>
+			<div class="message-end-game">
+				<div class="message-box">
+					<div id="game-win">
+						<svg width="128" height="80">
+							<image xlink:href="img/win.svg" src="img/win.png" width="128" height="80"/>
+						</svg>
+						<h1>Ура! Победа!</h1>
+						<p>Противник повержен, капитан</p>
+					</div>
+					<div id="game-losing">
+						<svg width="80" height="80">
+							<image xlink:href="img/loos.svg" src="img/loos.png" width="80" height="80"/>
+						</svg>
+						<h1>Проигрыш...</h1>
+						<p>Наш флот разгромлен, капитан</p>
+					</div>
+					
+					<input type="button" value="Сыграть ещё раз" class="primary start-game-btn">
+					<input type="button" value="Выйти" class="exit-game-btn">
+				</div>
+			</div>
+
+			<div class="game-header">
+				<div class="header-left-btn">
+					<input type="button" value="Назад" class="exit-game-btn arrow-left">
+				</div>
+
+				<div  id="logotype">
+					<h1 class="text-center">Морской бой</h1>
+				</div>
+
+				<div id="score">
+					<div id="player_name"></div>
+					<div id="score-game">0 : 0</div>
+					<div id="computer_name">Компьютер</div>
+				</div>
+			</div>
+			
+			<div class="game-wrap">
+				<div id="game-status">Сейчас наш ход</div>
+				
+				<div class="battle-field">
+					<table id="player-field"></table>
+					<p class="text-center">Наше поле</p>
+				</div>
+
+				<div class="battle-field">
+					<table id="computer-field"></table>
+					<p class="text-center">Компьютер</p>
+				</div>
+			</div>
+			<input type="button" value="Новая игра" class="new-game-btn">
+		</div>
+	</div>
+
+	<audio><source src="audio/boom.mp3" type="audio/mpeg"></audio>
+	<audio><source src="audio/missed.mp3" type="audio/mpeg"></audio>
+</body>
+</html>
